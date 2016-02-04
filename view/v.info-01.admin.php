@@ -1,0 +1,37 @@
+<tr>
+	<th>Id</th>
+	<th>Nombre</th>
+	<th>Contacto2</th>
+	<th>Contacto3</th>
+	<th>Direccion</th>
+	<th>Ciudad</th>
+	<th>Pais</th>
+	<th>Estado</th>
+	<th>Lada</th>
+	<th>Telefono</th>
+	<th>Email</th>
+	<th>Medio</th>
+	<th>Giro</th>
+	<th>Comentarios</th>
+	<th>Fecha</th>
+	<th>Hora</th>
+	<th>Formulario</th>
+	<th>Equipodeinteres</th>
+	<th>Comeqenatp</th>
+	<th>Eqclosqcuenta</th>
+	<th>Antacteq</th>
+	<th>Escliente</th>
+	<th>Numerodecliente</th>
+	<th>Motivodeconsulta</th>
+	<th>Empresa</th>
+	<th>Nombre_recomendador</th>
+	<th>Sucursal_recomendador</th>
+	<th>Comentario_vendedor</th>
+	<th>Asignadoa</th>
+	<th>Fechadecontacto</th>
+	<th>Fechaasignacion</th>
+	<th>Fechaventa</th>
+	<th>Estadodeventa</th>
+	<th>Numerodefactura</th>
+	<th>Usuario</th>
+</tr>

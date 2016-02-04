@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<h4>
+			&nbsp;<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+			<acronym title="<?= $_SESSION['pruebadehora'] ?>">
+				Comentarios:
+			</acronym>
+		</h4>
+		<table>
+			<tr>
+				<td>
+					<input type="radio" name="hotcake" value="No contesto" onclick="texto1();"/> No contesto
+				</td>
+				<td width="10"></td>
+				<td>
+					<input type="radio" name="hotcake" value="Envío de correo" onclick="texto2();"/> Envío de correo
+				</td>
+				<td width="10"></td>
+				<td>
+					<input type="radio" name="hotcake" value="Llamada Efectiva" onclick="texto3();"/> Llamada Efectiva
+				</td>
+				<td width="10"></td>
+				<td>
+					<input type="radio" name="hotcake" value="Demostración" onclick="texto4();"/> Demostración
+				</td>
+				<td width="10"></td>
+				<td>
+					<input type="radio" name="hotcake" value="Visita" onclick="texto5();"/> Visita
+				</td>
+			</tr>
+		</table>
+		<br>
+		<textarea name="comentariovendedor" id="comentariovendedor" class="form-control" rows="2" style="width:90%; height:50px; resize: none; margin:auto;" onfocus="javascript:mandalo();"></textarea>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<h4>
+			&nbsp;<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+			<acronym title="<?= $_SESSION['pruebadehora'] ?>">
+				Comentarios:
+			</acronym>
+		</h4>
+		<table style="font-size:12px; width:100%;">
+			<tr>
+				<td>
+					<input type="hidden" name="hotcake" value="Off"/>
+					<input type="checkbox" name="t1" value="No contesto" onclick="texto1();"/> No contesto
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t2" value="Envío de correo" onclick="texto2();"/> Envío de correo
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t3" value="Llamada Efectiva" onclick="texto3();"/> Llamada Efectiva
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t4" value="Demo Online" onclick="texto4();"/> Demo Online
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t5" value="Demo Presencial" onclick="texto5();"/> Demo Presencial
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t6" value="Visita" onclick="texto6();"/> Visita
+				</td>
+				<td width="5"></td>
+				<td>
+					<input type="checkbox" name="t7" value="Envío de cotización" onclick="texto7();"/> Envío de cotización
+				</td>
+			</tr>
+		</table>
+		<br>
+		<textarea name="comentariovendedor" id="comentariovendedor" class="form-control" rows="2" style="width:90%; height:50px; resize: none; margin:auto;" onfocus="javascript:mandalo();"></textarea>
+	</div>
+</div>

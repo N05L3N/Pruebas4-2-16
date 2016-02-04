@@ -1,0 +1,46 @@
+<h5>Soporte</h5>
+<table class="table table-condensed " style="width:100%; background-color:white;">
+	<tr>
+		<td width="30%" style="vertical-align:middle;">
+			<div style="width:120px; height120px; margin:auto;">
+				<canvas id="chart-StatusEquipo" width="120" height="120"/>
+			</div>
+
+		<div class="btn-toolbar" role="toolbar" aria-label="">
+			<div class="btn-group" role="group" aria-label=""><span class="label label-info"><?= $consultasEquipo_numero_asignacionesHoy ?></span></div>
+			<div class="btn-group" role="group" aria-label=""><span class="label label-danger"><?= $consultasEquipo_numero_pendientes ?></span></div>
+			<div class="btn-group" role="group" aria-label=""><span class="label label-primary"><?= $b ?></span></div>
+			<div class="btn-group" role="group" aria-label=""><span class="label" style="background-color:black;"><?= $consultasEquipo_numero_asignacionesTotal ?></span></div>
+		</div>
+
+		</td>
+		<td width="70%">
+			<?php
+				$a = $consultas_numero_asignacionesHoy + $consultas_numero_pendientes;
+				$b = $consultas_numero_asignacionesTotal - $a;
+			?>
+			<table class="table table-bordered table-striped table-condensed table-hover" style="width:100%; margin-bottom:0;">
+				<tr>
+					<th class=""><span class="label label-success"><?= $total_facturados ?></span></th><td>Opción</td>
+				</tr>
+				<tr>
+					<th class=""><span class="label label-danger"><?= $total_calientes ?></span></th><td>Opción</td>
+				</tr>
+				<tr>
+					<th class=""><span class="label label-warning"><?= $total_tibios ?></span></th><td>Opción</td>
+				</tr>
+				<tr>
+					<th class=""><span class="label label-info"><?= $total_frios ?></span></th><td>Opción</td>
+				</tr>
+				<tr>
+					<th style="width:5%;"><span class="label label-default"><?= $total_descartados ?></span></th><td style="width:95%;">Opción</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center;">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg2">Detalles</button>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,110 @@
+<?php
+# $prueba = '1';
+# if($prueba == '1')
+if($_POST)
+{
+	 $to_email   	= "gerentecredito@avanceytec.com.mx"; //Recipient email, Replace with own email here
+#	$to_email   	= "amariscal@avanceytec.com.mx"; //Recipient email, Replace with own email here
+	
+	//check if its an ajax request, exit if not
+    if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+		
+		$output = json_encode(array( //create JSON data
+			'type'=>'error', 
+			'text' => 'Sorry Request must be Ajax POST'
+		));
+		die($output); //exit script outputting json data
+    } 
+	
+	//Sanitize input data using PHP filter_var().
+	$user_name = filter_var($_POST["user_name"], FILTER_SANITIZE_STRING);
+	$reportedenuevaventanombredelcliente = filter_var($_POST["reportedenuevaventanombredelcliente"], FILTER_SANITIZE_STRING);
+	$reportedenuevaventaempresa = filter_var($_POST["reportedenuevaventaempresa"], FILTER_SANITIZE_STRING);
+	$reportedenuevaventasoftware = filter_var($_POST["reportedenuevaventasoftware"], FILTER_SANITIZE_STRING);
+	$reportedenuevaventanumerodeserie = filter_var($_POST["reportedenuevaventanumerodeserie"], FILTER_SANITIZE_STRING);
+	$reportedenuevaventafacturaavance = filter_var($_POST["reportedenuevaventafacturaavance"], FILTER_SANITIZE_STRING);
+	$user_email		= filter_var($_POST["user_email"], FILTER_SANITIZE_EMAIL);
+	$country_code	= filter_var($_POST["country_code"], FILTER_SANITIZE_NUMBER_INT);
+	$phone_number	= filter_var($_POST["phone_number"], FILTER_SANITIZE_NUMBER_INT);
+	$subject		= filter_var($_POST["subject"], FILTER_SANITIZE_STRING);
+	$message		= filter_var($_POST["msg"], FILTER_SANITIZE_STRING);
+	
+	//additional php validation
+	if(strlen($user_name)<4){ // If length is less than 4 it will output JSON error.
+		$output = json_encode(array('type'=>'error', 'text' => 'Name is too short or empty!'));
+		die($output);
+	}
+
+	if(!filter_var($user_email, FILTER_VALIDATE_EMAIL)){ //email validation
+		$output = json_encode(array('type'=>'error', 'text' => 'Please enter a valid email!'));
+		die($output);
+	}
+	if(!filter_var($country_code, FILTER_VALIDATE_INT)){ //check for valid numbers in country code field
+		$output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in country code'));
+		die($output);
+	}
+	if(!filter_var($phone_number, FILTER_SANITIZE_NUMBER_FLOAT)){ //check for valid numbers in phone number field
+		$output = json_encode(array('type'=>'error', 'text' => 'Enter only digits in phone number'));
+		die($output);
+	}
+	if(strlen($subject)<3){ //check emtpy subject
+		$output = json_encode(array('type'=>'error', 'text' => 'Subject is required'));
+		die($output);
+	}
+	if(strlen($message)<3){ //check emtpy message
+		$output = json_encode(array('type'=>'error', 'text' => 'Too short message! Please enter something.'));
+		die($output);
+	}
+	
+	//email body
+	# $message_body = $message."\r\n\r\n-".$user_name."\r\nEmail : ".$user_email."\r\nPhone Number : (".$country_code.") ". $phone_number ;
+	
+	$message_body = "
+    	<ul>
+    	<li>Nombre del cliente: " .$reportedenuevaventanombredelcliente. "</li>
+    	<li>Empresa: " .$reportedenuevaventaempresa. "</li>
+    	<li>Software: " .$reportedenuevaventasoftware. "</li>
+    	<li>Numero de serie: " .$reportedenuevaventanumerodeserie. "</li>
+    	<li>Factura Avance: " .$message. "</li>
+    	</ul>
+    	";
+	
+	//proceed with PHP email.
+	# $headers = 'From: '.$user_name.'' . "\r\n" .
+    	$headers = 'From: '.$user_email.'' . "\r\n" .
+
+
+    $headers .= "cc: gerencia@kumasoftware.com, coordinadordeventas@kumasoftware.com, soporte@kumasoftware.com, $user_email \r\n";
+    # $headers .= "cc: gerencia@kumasoftware.com, coordinadordeventas@kumasoftware.com, soporte@kumasoftware.com \r\n";
+	$headers .= "bcc: auxdiseno@avanceytec.com.mx \r\n";
+	$headers .= "MIME-Version: 1.0\n";
+	$headers .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
+
+
+	'Reply-To: '.$user_email.'' . "\r\n" .
+	'X-Mailer: PHP/' . phpversion();
+	
+	$send_mail = mail($to_email, $subject, $message_body, $headers);
+	
+	if(!$send_mail)
+	{
+		//If mail couldn't be sent output error. Check your PHP email configuration (if it ever happens)
+		$output = json_encode(array('type'=>'error', 'text' => 'Could not send mail! Please check your PHP mail configuration.'));
+		die($output);
+	}else{
+		$buttonBootstrap = '
+<br>
+<br>
+			<a href="#f3" aria-controls="f3" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-success" aria-label="Left Align">
+					<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Siguiente
+				</button>	
+			</a>
+';
+		$output = json_encode(array('type'=>'message', 'text' => ''.$buttonBootstrap .''));
+		die($output);
+	}
+}
+
+?>
+<script>	alert('<?= $to_email ?>');</script>

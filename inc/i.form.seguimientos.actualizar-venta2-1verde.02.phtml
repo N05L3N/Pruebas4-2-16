@@ -1,0 +1,135 @@
+<script type="text/javascript">
+
+	function mostrarFechaDeVenta () {
+		$("#FechaDeVenta").addClass("on");
+		$("#FechaDeVenta").removeClass("off");
+	}
+	
+	function ocultarFechaDeVenta () {
+		$("#FechaDeVenta").removeClass("on");
+		$("#FechaDeVenta").addClass("off");
+	}
+
+</script>
+
+
+<?php
+
+	# Informacion de la tabla de Comentarios para buscar el estado de la venta y la fecha proxima
+	$id = $_GET['id'];
+	$q = mysql_query("SELECT * FROM ecrm_comentarios_v WHERE id_seguimiento = '$id' ORDER BY id_comentarios_v desc limit 0,1");
+	$i = 0;
+	while ($r = mysql_fetch_array($q)) {
+		if ($i > 0) { }
+		$estadodeventa = $r['estadodeventa'];
+		$i++; 
+	}
+
+	# Informacion de la tabla de Comentarios para buscar el estado de la venta y la fecha proxima
+	$q = mysql_query("SELECT * FROM contacto WHERE id = '$id' ORDER BY id desc limit 0,1");
+	$i = 0;
+	while ($r = mysql_fetch_array($q)) {
+		if ($i > 0) { }
+		$reportedenuevaventanombredelcliente = $r['nombre'];
+		$reportedenuevaventaempresa = $r['empresa'];
+		# $reportedenuevaventausuario = $_SESSION['usuario'];
+		$reportedenuevaventausuario = $r['asignadoa'];
+		$i++; 
+	}
+
+	if ($estadodeventa == 'facturado') {
+
+?>
+
+	<input type="hidden" value="facturado" name="estadodeventa" class="form-contro" onclick="mostrarFechaDeVenta();" data-toggle="modal" data-target=".bs-example-modal-lg" backdrop="1">
+	<br />
+
+<?php
+
+	}
+
+	else {
+
+?>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<h4>
+			&nbsp;<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> 
+			Estatus de la venta:.
+		</h4>
+		<table style="width:95%; margin:auto;">
+			<tr>
+				<td style="vertical-align:top;">
+					<input type="radio" value="frio" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Frio <br><small> (76 a 180 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="tibio" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Tibio <br><small> (31 a 75 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="caliente" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Caliente <br><small> (1 a 30 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="descartado" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();javascript:this.form.fechaprox.value='31-12-2050';"> Descartado
+					<br>
+					<br>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="facturado" name="estadodeventa" class="form-contro" onclick="mostrarFechaDeVenta();" data-toggle="modal" data-target=".bs-example-modal-lg" backdrop="1"> Facturado
+					<br>
+					<br>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<br />
+
+<?php
+
+	}
+
+?>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			<div class="modal-body">
+<!-- -->
+<div style="background-color:white; width:100%;height:350px;overflow-y:scroll;overflow-x:hidden; font-size:12px;">
+	<div role="tabpanel">
+  		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="f1">
+				<?php include('i.form.seguimientos.actualizar-venta2-1verde.02-01.phtml') ?>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="f2">
+				<?php include('i.form.seguimientos.actualizar-venta2-1verde.02-02.phtml') ?>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="f3">
+				<?php include('i.form.seguimientos.actualizar-venta2-1verde.02-03.phtml') ?>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="f4">
+				<?php include('i.form.seguimientos.actualizar-venta2-1verde.02-04.phtml') ?>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="f5">
+				<?php include('i.form.seguimientos.actualizar-venta2-1verde.02-05.phtml') ?>
+			</div>
+  		</div>
+	</div>
+</div>
+<!-- -->
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>

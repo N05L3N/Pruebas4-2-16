@@ -1,0 +1,169 @@
+<script type="text/javascript">
+	
+	function ReporteDeNuevaVenta1(sel){
+		document.getElementById("reportedenuevaventasoftware").value=sel.value;
+  	}
+</script>
+
+<table class="table table-striped" style="width:100%;">
+	<tr>
+		<th>
+			<a href="#f1" aria-controls="f1" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-info">
+					<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> General
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Terminos de venta
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f3" aria-controls="f3" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Usuarios
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f4" aria-controls="f4" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Datos de Facturación
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f5" aria-controls="f5" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Referencias
+				</button>
+			</a>
+		</th>
+	</tr>
+</table>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Fecha de venta</th>
+				<td>
+					<div class="input-group input-group-md" style="width:180px;">
+						<input type="text" id="datepickerfechaventa" name="fechaventa" onlyread="onlyread" class="form-control">
+					</div>
+				</td>
+			</tr>
+		<!--
+			<tr>
+				<th>Monto de Venta</th>
+				<td>
+					<input type="text"  name="montodeventa" class="form-control">
+				</td>
+			</tr>
+		-->
+			<input type="hidden"  name="montodeventa" class="form-control" value="OFF">
+			<tr>
+				<th>Software</th>
+				<td>
+					<select name="softwarevendido" class="form-control" id="" onchange="ReporteDeNuevaVenta1(this)">
+						<option value=""></option>
+						<optgroup label="Actualizacion">
+							<option value="Actualizacion 7000 a 8000">Actualización 7000 a 8000</option>
+							<option value="Actualizacion KD a 8000">Actualización KD a 8000</option>
+							<option value="Actualizacion KD a T6">Actualización KD a T6</option>
+							<option value="Actualizacion Lite a 8000">Actualización Lite a 8000</option>
+							<option value="Actualizacion Lite a T6">Actualización Lite a T6</option>
+							<option value="Actualizacion T5 a T6">Actualización T5 a T6</option>
+						</optgroup>
+						<option value="Asesorias">Asesorías</option>
+						<option value="Cambio de llave">Cambio de llave</option>
+						<option value="Ceramic King">Ceramic King</option>
+						<option value="Curso">Curso </option>
+						<option value="Cutting List">Cutting List</option>
+						<option value="Hora soporte">Hora soporte</option>
+						<option value="InteriCAD 8000">InteriCAD 8000</option>
+						<option value="InteriCAD Lite">InteriCAD Lite</option>
+						<option value="InteriCAD T6">InteriCAD T6</option>
+						<option value="iScan">iScan</option>
+						<option value="KD MAX">KD MAX</option>
+						<option value="Lite Est">Lite Est</option>
+						<option value="T6 Estudiantil">T6 Estudiantil</option>
+						<option value="Reparacion llave">Reparación llave</option>
+						<option value="Soporte Tecnico">Soporte Técnico</option>
+						<option value="ZWCAD+ Std">ZWCAD+ Std</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Version</th>
+				<td>
+					<select name="fd_version" class="form-control">
+						<option value="Premium">Premium</option>
+						<option value="Básico">Básico</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Numero de serie</th>
+				<td>
+					<input type="text" name="fd_numero_de_serie" class="form-control" placeholder="" value="<?= $numero_de_serie ?>" onblur="javascript:this.form.reportedenuevaventanumerodeserie.value=this.value;">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>
+					Codigos de activacion
+				</th>
+				<td>
+					<input type="text" name="fd_codigos_de_activacion" class="form-control" placeholder="" value="<?= $codigos_de_activacion ?>">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Periodo de Soporte
+				</th>
+				<td>
+					<select name="asignacion_licencia" id="" class="form-control" >
+						<option value="1">1 Mes</option>
+						<option value="3">3 Meses</option>
+						<option value="6">6 Meses</option>
+						<option value="9">9 Meses</option>
+						<option value="12">12 Meses</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Desde
+				</th>
+				<td>
+					<div class="input-group input-group-md" style="width:180px;">
+						<input type="text" id="datepickerasignacion_fecha_inicial" name="q4_fecha_inicial" onlyread="onlyread" class="form-control">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Hasta
+				</th>
+				<td>
+					<div class="input-group input-group-md" style="width:180px;">
+						<input type="text" id="datepickerasignacion_fecha_final" name="q4_fecha_final" onlyread="onlyread" class="form-control">									
+					</div>
+				</td>
+			</tr>
+		</table>
+		<center>
+			<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-success" aria-label="Left Align">
+					<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> Siguiente
+				</button>	
+			</a>
+		</center>
+	</div>
+</div>

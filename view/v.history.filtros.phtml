@@ -1,0 +1,173 @@
+<div class="row">
+	<div class="col-lg-3 col-md-3">
+
+<?php
+							
+	if ($_SESSION["tipo"] == 'vendedor') {
+		
+		$filtrarporvendedor = $_SESSION["usuario"];
+	
+	}
+	
+	else {
+		
+		$filtrarporvendedor = $_POST["filtrarporvendedor"];
+	
+	}
+
+?>
+		<h4>Filtrar por Vendedor <?= '' . $filtrarporvendedor . '' ?></h4>
+		<form action="<?= $url ?>" method="post" id="filtrarporvendedor">
+			<select name="filtrarporvendedor" class="form-control" onchange="this.form.submit()">
+
+<?php
+	
+	if ($_SESSION["tipo"] == 'vendedor') {
+
+?>
+				<option value="<?= $filtrarporvendedor ?>"><?= $filtrarporvendedor ?></option>
+
+<?php
+	
+	}
+
+	else {
+
+?>
+				<option value="">Todos</option>
+
+<?php 
+		
+		include('model/m.select.vendedores-actuales.php');
+
+	}
+
+?>
+
+			</select>
+			<input type="hidden" name="filtrarStatus" value="<?= $filtrarStatus ?>">
+			<input type="hidden" name="filterDate1" value="<?= $filterDate1 ?>">
+			<input type="hidden" name="filterDate2" value="<?= $filterDate2 ?>">
+		</form>						
+	</div>
+
+	<div class="col-lg-3 col-md-3">
+		<h4>Filtrar por Status</h4>
+		<form action="history" method="post">
+			<select name="filtrarStatus"class="form-control" onchange="this.form.submit()">
+				<option value="">Todos</option>
+			<?php 
+				if ($filtrarStatus == 'Caliente') {
+			?>
+				<option value="Caliente" selected>Caliente</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Caliente">Caliente</option>
+			<?php
+				}
+			?>
+			<?php 
+				if ($filtrarStatus == 'Descartado') {
+			?>
+				<option value="Descartado" selected>Descartado</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Descartado">Descartado</option>
+			<?php
+				}
+			?>
+			<?php 
+				if ($filtrarStatus == 'Facturado') {
+			?>
+				<option value="Facturado" selected>Facturado</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Facturado">Facturado</option>
+			<?php
+				}
+			?>
+			<?php 
+				if ($filtrarStatus == 'Frio') {
+			?>
+				<option value="Frio" selected>Frio</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Frio">Frio</option>
+			<?php
+				}
+			?>
+			<?php 
+				if ($filtrarStatus == 'Pendiente') {
+			?>
+				<option value="Pendiente" selected>Pendiente</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Pendiente">Pendiente</option>
+			<?php
+				}
+			?>
+			<?php 
+				if ($filtrarStatus == 'Tibio') {
+			?>
+				<option value="Tibio" selected>Tibio</option>
+			<?php
+				}
+				else {
+			?>
+				<option value="Tibio">Tibio</option>
+			<?php
+				}
+			?>
+								
+			</select>
+			<input type="hidden" name="filtrarporvendedor" value="<?= $filtrarporvendedor ?>">
+			<input type="hidden" name="filterDate1" value="<?= $filterDate1 ?>">
+			<input type="hidden" name="filterDate2" value="<?= $filterDate2 ?>">
+		</form>
+	</div>
+	
+	<div class="col-lg-6 col-md-6">
+		<h4>Filtrar por Fecha</h4>
+
+<script>
+
+function SubmitFiltrarporfecha() {
+	document.getElementById("filtrarporfecha").submit();
+}
+
+</script>
+		<form action="<?= $url ?>" method="post" id="filtrarporfecha">
+  		<table class="" style="width:100%;">
+  			<tr>
+  				<td style="width:40%;">
+  					<div class="input-group input-group-md vista" id="campoparafecha">
+  						<input type="text" name="filterDate1" readonly="readonly" class="form-control datepicker" id="datepickerDesde" placeholder="Desde: <?= $filterDate1 ?>" value="<?= $filterDate1 ?>">
+  					</div>
+  				</td>
+  				<td style="width:40%;">
+					<div class="input-group input-group-md vista" id="campoparafecha">
+						<input type="text" name="filterDate2" readonly="readonly" class="form-control datepicker" id="datepickerHasta" placeholder="Hasta: <?= $filterDate2 ?>" value="<?= $filterDate2 ?>">
+					</div>
+  				</td>
+  				<td style="width:10%; text-align:center;">
+  					<button type="button" class="btn btn-default" aria-label="Left Align" onclick="javascript:SubmitFiltrarporfecha();" style="margin:auto;">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"> <span style="font-family:calibri;">Filtrar</span></span>
+					</button>			
+  				</td>
+  			</tr>
+  		</table>
+		<input type="hidden" name="filtrarporvendedor" value="<?= $filtrarporvendedor ?>">
+		<input type="hidden" name="filtrarStatus" value="<?= $filtrarStatus ?>">
+		</form>
+	</div>
+</div>

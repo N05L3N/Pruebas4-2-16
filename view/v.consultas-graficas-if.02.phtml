@@ -1,0 +1,283 @@
+<?php
+
+if ($filterDate1 == '--') { $filterDate1 = ''; } else { }
+if ($filterDate2 == '--') { $filterDate2 = ''; } else { }
+
+if ($dev == '') {
+	$coment1 = '';
+	$coment2 = '';
+}
+
+else {
+	$coment1 = '<!--';
+	$coment2 = '-->';
+}
+
+
+$total_sdelacruz = $total_facturados_sdelacruz + $total_correos_sdelacruz + $total_llamadas_sdelacruz + $total_llamadasycorreos_sdelacruz + $total_descartados_sdelacruz;
+$total_ccastillo = $total_facturados_ccastillo + $total_correos_ccastillo + $total_llamadas_ccastillo + $total_llamadasycorreos_ccastillo + $total_descartados_ccastillo;
+$total_dfernandez = $total_facturados_dfernandez + $total_correos_dfernandez + $total_llamadas_dfernandez + $total_llamadasycorreos_dfernandez + $total_descartados_dfernandez;
+$total_aaranza = $total_facturados_aaranza + $total_correos_aaranza + $total_llamadas_aaranza + $total_llamadasycorreos_aaranza + $total_descartados_aaranza;
+
+$total_sdelacruzBar = $asignacionesHoy_sdelacruz + $asignacionesTotal_sdelacruz + $total_llamadas_sdelacruz + $total_llamadasycorreos_sdelacruz + $total_descartados_sdelacruz;
+$total_ccastilloBar = $asignacionesHoy_ccastillo + $asignacionesTotal_ccastillo + $total_llamadas_ccastillo + $total_llamadasycorreos_ccastillo + $total_descartados_ccastillo;
+$total_dfernandezBar = $asignacionesHoy_dfernandez + $asignacionesTotal_dfernandez + $total_llamadas_dfernandez + $total_llamadasycorreos_dfernandez + $total_descartados_dfernandez;
+$total_aaranzaBar = $asignacionesHoy_aaranza + $asignacionesTotal_aaranza + $total_llamadas_aaranza + $total_llamadasycorreos_aaranza + $total_descartados_aaranza;
+
+
+	if ($total_sdelacruz == 0) { 
+		$Datossdelacruz = '<div class="sinDatos"></div><canvas id="chart-Statussdelacruz" width="0" height="0"/>';
+	}
+	else {
+		$Datossdelacruz = '<canvas id="chart-Statussdelacruz" width="120" height="120"/>';
+	}
+
+	if ($total_ccastillo == 0) { 
+		$Datosccastillo = '<div class="sinDatos"></div><canvas id="chart-Statusccastillo" width="0" height="0"/>';
+	}
+	else {
+		$Datosccastillo = '<canvas id="chart-Statusccastillo" width="120" height="120"/>';
+	}
+
+	if ($total_dfernandez == 0) { 
+		$Datosdfernandez = '<div class="sinDatos"></div><canvas id="chart-Statusdfernandez" width="0" height="0"/>';
+	}
+	else {
+		$Datosdfernandez = '<canvas id="chart-Statusdfernandez" width="120" height="120"/>';
+	}
+
+	if ($total_aaranza == 0) { 
+		$Datosaaranza = '<div class="sinDatos"></div><canvas id="chart-Statusaaranza" width="0" height="0"/>';
+	}
+	else {
+		$Datosaaranza = '<canvas id="chart-Statusaaranza" width="120" height="120"/>';
+	}
+
+	# BAR
+	
+	if ($total_sdelacruzBar == 0) { 
+		$DatossdelacruzBar = '<div class="sinDatos"></div><canvas id="chart-StatussdelacruzBar" width="0" height="0"/>';
+	}
+	else {
+		$DatossdelacruzBar = '<canvas id="chart-StatussdelacruzBar" width="80" height="80"/>';
+	}
+	$DatossdelacruzBar = '';
+
+	if ($total_ccastilloBar == 0) { 
+		$DatosccastilloBar = '<div class="sinDatos"></div><canvas id="chart-StatusccastilloBar" width="0" height="0"/>';
+	}
+	else {
+		$DatosccastilloBar = '<canvas id="chart-StatusccastilloBar" width="80" height="80"/>';
+	}
+	$DatosccastilloBar = '';
+
+	if ($total_dfernandezBar == 0) { 
+		$DatosdfernandezBar = '<div class="sinDatos"></div><canvas id="chart-StatusdfernandezBar" width="0" height="0"/>';
+	}
+	else {
+		$DatosdfernandezBar = '<canvas id="chart-StatusdfernandezBar" width="80" height="80"/>';
+	}
+	$DatosdfernandezBar = '';
+
+	if ($total_aaranzaBar == 0) { 
+		$DatosaaranzaBar = '<div class="sinDatos"></div><canvas id="chart-StatusaaranzaBar" width="0" height="0"/>';
+	}
+	else {
+		$DatosaaranzaBar = '<canvas id="chart-StatusaaranzaBar" width="80" height="80"/>';
+	}
+	$DatosaaranzaBar = '';
+?>
+
+<style>
+	body {
+		background-color: #aaa;
+	}
+	div.sinDatos {
+		background-color:#EEE;
+		border-radius:120px;
+		width:120px;
+		height:120px;
+		border:1px solid black;
+	}
+</style>
+<form action="<?= $url ?>" method="post" id="filtrarporfecha2">
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+	<div style="height:8px; width:100%;"></div>
+    
+<div class="row">
+	<div class="col-lg-1 col-md-1 col-sm-1">
+		<a href="consultas.php" style="text-decoration:none;">
+			<h4 class="modal-title" style="color:white; margin:5px 0px 0px 10px;">
+				<button type="button" class="btn btn-danger btn-md" style="margin-top:-5px;">
+  					<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Regresar
+				</button>
+			</h4>
+		</a>
+	</div>
+	<div class="col-lg-5 col-md-5 col-sm-5">
+		<h4 class="modal-title" id="myModalLabel" style="color:white; margin:5px 0px 0px 10px;">
+			<span class="glyphicon glyphicon-credit-card"></span> 
+			Ventas
+		</h4>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		
+  	</div>
+</div>
+<input type="hidden" name="filtrarporvendedor" value="<?= $filtrarporvendedor ?>">
+<input type="hidden" name="filtrarStatus" value="<?= $filtrarStatus ?>">
+</form>
+
+	
+</nav>
+
+  <div class="row" style="margin-top:-5px;">
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		<?php
+
+			$tmp_Usuario = 'sdelacruz';
+			$tmp_Nombre = 'sdelacruz';
+			$tmp_Telefono = '';
+			$tmp_Correo = 'sdelacruz@kumasoftware.com';
+
+			$tmp_semaforo_Hoy =  $asignacionesHoy_sdelacruz;
+			$tmp_semaforo_Total = $asignacionesTotal_sdelacruz;
+			$tmp_semaforo_Atrasados = $asignacionesAtrasados_sdelacruz;
+
+			$tmp_Grafica = $Datossdelacruz;
+			$tmp_Grafica_Facturados = $total_facturados_sdelacruz;
+			$tmp_Grafica_Correos = $total_correos_sdelacruz;
+			$tmp_Grafica_Llamadas = $total_llamadas_sdelacruz;
+			$tmp_Grafica_Llamadasycorreos = $total_llamadasycorreos_sdelacruz;
+			$tmp_Grafica_Descartados = $total_descartados_sdelacruz;
+
+			$tmp_contactoMedio_01 = $contactoMedio_01_sdelacruz;
+			$tmp_contactoMedio_02 = $contactoMedio_02_sdelacruz;
+			$tmp_contactoMedio_03 = $contactoMedio_03_sdelacruz;
+			$tmp_contactoMedio_04 = $contactoMedio_04_sdelacruz;
+			$tmp_contactoMedio_05 = $contactoMedio_05_sdelacruz;
+			$tmp_contactoMedio_06 = $contactoMedio_06_sdelacruz;
+			$tmp_contactoMedio_07 = $contactoMedio_07_sdelacruz;
+			$tmp_contactoMedio_08 = $contactoMedio_08_sdelacruz;
+			$tmp_contactoMedio_09 = $contactoMedio_09_sdelacruz;
+			$tmp_contactoMedio_10 = $contactoMedio_10_sdelacruz;
+
+			/*
+			ccastillo
+			dfernandez
+			rubi
+			mario
+			baragon
+			gabriela
+			ventascat05
+			ventascat13
+			aaranza
+			*/
+
+			include('v.consultas-graficas-if.02-01.phtml');
+		?>
+	</div>
+	
+
+
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		<?php
+			$tmp_Usuario = 'ccastillo';
+			$tmp_Nombre = 'ccastillo';
+			$tmp_Telefono = '';
+			$tmp_Correo = 'ccastillo@kumasoftware.com';
+
+			$tmp_semaforo_Hoy =  $asignacionesHoy_ccastillo;
+			$tmp_semaforo_Total = $asignacionesTotal_ccastillo;
+			$tmp_semaforo_Atrasados = $asignacionesAtrasados_ccastillo;
+
+			$tmp_Grafica = $Datosccastillo;
+			$tmp_Grafica_Facturados = $total_facturados_ccastillo;
+			$tmp_Grafica_Correos = $total_correos_ccastillo;
+			$tmp_Grafica_Llamadas = $total_llamadas_ccastillo;
+			$tmp_Grafica_Llamadasycorreos = $total_llamadasycorreos_ccastillo;
+			$tmp_Grafica_Descartados = $total_descartados_ccastillo;
+
+			$tmp_contactoMedio_01 = $contactoMedio_01_ccastillo;
+			$tmp_contactoMedio_02 = $contactoMedio_02_ccastillo;
+			$tmp_contactoMedio_03 = $contactoMedio_03_ccastillo;
+			$tmp_contactoMedio_04 = $contactoMedio_04_ccastillo;
+			$tmp_contactoMedio_05 = $contactoMedio_05_ccastillo;
+			$tmp_contactoMedio_06 = $contactoMedio_06_ccastillo;
+			$tmp_contactoMedio_07 = $contactoMedio_07_ccastillo;
+			$tmp_contactoMedio_08 = $contactoMedio_08_ccastillo;
+			$tmp_contactoMedio_09 = $contactoMedio_09_ccastillo;
+			$tmp_contactoMedio_10 = $contactoMedio_10_ccastillo;
+			include('v.consultas-graficas-if.02-01.phtml');
+		?>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		<?php
+
+			$tmp_Usuario = 'dfernandez';
+			$tmp_Nombre = 'dfernandez';
+			$tmp_Telefono = '';
+			$tmp_Correo = 'dfernandez@kumasoftware.com';
+
+			$tmp_semaforo_Hoy =  $asignacionesHoy_dfernandez;
+			$tmp_semaforo_Total = $asignacionesTotal_dfernandez;
+			$tmp_semaforo_Atrasados = $asignacionesAtrasados_dfernandez;
+
+			$tmp_Grafica = $Datosdfernandez;
+			$tmp_Grafica_Facturados = $total_facturados_dfernandez;
+			$tmp_Grafica_Correos = $total_correos_dfernandez;
+			$tmp_Grafica_Llamadas = $total_llamadas_dfernandez;
+			$tmp_Grafica_Llamadasycorreos = $total_llamadasycorreos_dfernandez;
+			$tmp_Grafica_Descartados = $total_descartados_dfernandez;
+
+			$tmp_contactoMedio_01 = $contactoMedio_01_dfernandez;
+			$tmp_contactoMedio_02 = $contactoMedio_02_dfernandez;
+			$tmp_contactoMedio_03 = $contactoMedio_03_dfernandez;
+			$tmp_contactoMedio_04 = $contactoMedio_04_dfernandez;
+			$tmp_contactoMedio_05 = $contactoMedio_05_dfernandez;
+			$tmp_contactoMedio_06 = $contactoMedio_06_dfernandez;
+			$tmp_contactoMedio_07 = $contactoMedio_07_dfernandez;
+			$tmp_contactoMedio_08 = $contactoMedio_08_dfernandez;
+			$tmp_contactoMedio_09 = $contactoMedio_09_dfernandez;
+			$tmp_contactoMedio_10 = $contactoMedio_10_dfernandez;
+
+			include('v.consultas-graficas-if.02-01.phtml');
+		?>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		<?php
+			$tmp_Usuario = 'aaranza';
+			$tmp_Nombre = 'aaranza';
+			$tmp_Telefono = 'Ext. 1150';
+			$tmp_Correo = 'ventascat06@avanceytec.com.mx';
+
+			$tmp_semaforo_Hoy =  $asignacionesHoy_aaranza;
+			$tmp_semaforo_Total = $asignacionesTotal_aaranza;
+			$tmp_semaforo_Atrasados = $asignacionesAtrasados_aaranza;
+
+			$tmp_Grafica = $Datosaaranza;
+			$tmp_Grafica_Facturados = $total_facturados_aaranza;
+			$tmp_Grafica_Correos = $total_correos_aaranza;
+			$tmp_Grafica_Llamadas = $total_llamadas_aaranza;
+			$tmp_Grafica_Llamadasycorreos = $total_llamadasycorreos_aaranza;
+			$tmp_Grafica_Descartados = $total_descartados_aaranza;
+
+			$tmp_contactoMedio_01 = $contactoMedio_01_aaranza;
+			$tmp_contactoMedio_02 = $contactoMedio_02_aaranza;
+			$tmp_contactoMedio_03 = $contactoMedio_03_aaranza;
+			$tmp_contactoMedio_04 = $contactoMedio_04_aaranza;
+			$tmp_contactoMedio_05 = $contactoMedio_05_aaranza;
+			$tmp_contactoMedio_06 = $contactoMedio_06_aaranza;
+			$tmp_contactoMedio_07 = $contactoMedio_07_aaranza;
+			$tmp_contactoMedio_08 = $contactoMedio_08_aaranza;
+			$tmp_contactoMedio_09 = $contactoMedio_09_aaranza;
+			$tmp_contactoMedio_10 = $contactoMedio_10_aaranza;
+
+			include('v.consultas-graficas-if.02-01.phtml');
+		?>
+	</div>
+</div>

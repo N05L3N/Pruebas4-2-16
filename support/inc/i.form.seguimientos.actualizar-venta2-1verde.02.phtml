@@ -1,0 +1,50 @@
+<script type="text/javascript">
+
+	function mostrarFechaDeVenta () {
+		$("#FechaDeVenta").addClass("on");
+		$("#FechaDeVenta").removeClass("off");
+	}
+	
+	function ocultarFechaDeVenta () {
+		$("#FechaDeVenta").removeClass("on");
+		$("#FechaDeVenta").addClass("off");
+	}
+
+</script>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<h4>
+			&nbsp;<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> 
+			Estatus de la venta:
+		</h4>
+		<table style="width:95%; margin:auto;">
+			<tr>
+				<td style="vertical-align:top;">
+					<input type="radio" value="frio" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Frio <br><small> (76 a 180 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="tibio" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Tibio <br><small> (31 a 75 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="caliente" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();"> Caliente <br><small> (1 a 30 dias)</small>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="descartado" name="estadodeventa" class="form-contro" onclick="ocultarFechaDeVenta();javascript:this.form.fechaprox.value='31-12-2050';"> Descartado
+					<br>
+					<br>
+				</td>
+				<td width="10"></td>
+				<td style="vertical-align:top;">
+					<input type="radio" value="facturado" name="estadodeventa" class="form-contro" onclick="mostrarFechaDeVenta();"> Facturado
+					<br>
+					<br>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<br />

@@ -1,0 +1,56 @@
+<style>
+
+div.on {
+	display: block;
+}
+
+div.off {
+	display: none;
+}
+
+</style>
+
+<div class="row off" id="FechaDeVenta">
+
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<h4>
+			&nbsp;<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 
+			<?= $obl ?>Si se realizo la venta introduzca la fecha:
+		</h4>
+
+		<div class="input-group input-group-md" style="width:200px;">
+			<input type="text" id="datepickerfechaventa" name="fechaventa" onlyread="onlyread" class="form-control">
+		</div>
+
+	</div>
+	
+	<div class="col-xs-3 col-sm-3 col-md-3">
+		<h4>
+			<span class="glyphicon glyphicon-usd" aria-hidden="true"></span> 
+			<?= $obl ?>Monto de Venta:
+		</h4>
+
+		<table cellpadding="0" cellspacing="0" border="0">
+				<td>
+					<input type="text"  name="montodeventa" class="form-control">
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-xs-3 col-sm-3 col-md-3">
+		<h4>
+			<span class="glyphicon glyphicon-check" aria-hidden="true"></span> 
+			<?= $obl ?>Software Vendido:
+		</h4>
+
+		<table cellpadding="0" cellspacing="0" border="0">
+				<td>
+					<input type="text"  name="softwarevendido" class="form-control">
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+<br>

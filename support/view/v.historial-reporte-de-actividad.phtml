@@ -1,0 +1,166 @@
+<div class="panel panel-default">
+	<div class="panel-heading"><span class="glyphicon glyphicon glyphicon-book" aria-hidden="true"></span> Historial | Reporte de Actividad</div>
+<div class="panel-body">
+
+<div style="width:100%;height:400px;overflow-y:scroll;overflow-x:scroll; font-size:12px;">
+	
+<table class="table table-bordered table-striped">
+	<tr>
+		<!-- <th>id_soporte2_s</th> -->
+		<!-- <th>id_seguimiento</th> -->
+		<!-- <th>Fecha</th> -->
+		<!-- <th>Asesor</th> -->
+		<th></th>
+		<th>Cliente</th>
+		<th>Concepto</th>
+		<th>Software</th>
+		<!-- <th>Hora</th>-->
+		<th>Categoria</th>
+		<!-- <th>Estado</th> -->
+		<th>Medio Utilizado</th>
+		<th>Comentarios</th>
+		<th style="width:100px;">Fecha</th>
+	</tr>
+
+
+<?php
+	
+	$asesor = $_SESSION['usuario'];
+
+	$result3 = mysql_query("SELECT * FROM ecrm_soporte2_s WHERE asesor = '$asesor'  AND cliente != 'Prueba X' ORDER BY id_soporte2_s desc limit 0,100");
+	mysql_query ("SET NAMES 'utf8'");
+
+	$i3 = 0;
+	
+	while ($row3 = mysql_fetch_array($result3)) { 
+		if ($i3 > 0) {
+	}
+
+	$id_soporte2_s = $row3['id_soporte2_s'];
+	$id_seguimiento = $row3['id_seguimiento'];
+	
+	$fechaE = explode("-", $row3['fecha']);
+	$fecha = '' . $fechaE[2] . '-' . $fechaE[1] .'-' . $fechaE[0] . '';
+
+	$asesor = $row3['asesor'];
+	$cliente = $row3['cliente'];
+	$concepto = $row3['concepto'];
+	$software = $row3['software'];
+	$horainicio1 = $row3['horainicio1'];
+	$horainicio2 = $row3['horainicio2'];
+	$horainicio3 = $row3['horainicio3'];
+	$horafin1 = $row3['horafin1'];
+	$horafin2 = $row3['horafin2'];
+	$horafin3 = $row3['horafin3'];
+	$categoria = $row3['categoria'];
+	$estado = $row3['estado'];
+	$medioutilizado1 = $row3['medioutilizado1'];
+	$medioutilizado2 = $row3['medioutilizado2'];
+	$medioutilizado3 = $row3['medioutilizado3'];
+	$medioutilizado4 = $row3['medioutilizado4'];
+	$medioutilizado5 = $row3['medioutilizado5'];
+	$comentarios = $row3['comentarios'];
+		
+	$fecharespuestaE = explode("-", $row3['fecharespuesta']);
+	$fecharespuesta = '' . $fecharespuestaE[2] . '-' . $fecharespuestaE[1] .'-' . $fecharespuestaE[0] . '';
+
+	$horarespuesta = $row3['horarespuesta'];
+
+	if ($estado == 'Activo') {
+		$tr = 'danger';
+		$title = 'Activo';
+	}
+	else if ($estado == 'Resuelto') {
+		$tr = 'success';
+		$title = 'Resuelto';
+	}
+	else if ($estado == 'Cerrado') {
+		$tr = 'warning';
+		$title = 'Cerrado';
+	}
+	else {
+		$tr = '';
+	}
+?>
+	<tr class="<?= $tr ?>">
+		<td>
+			<span class="label label-<?= $tr ?>" title="<?= $title ?>" style="cursor:help;">
+				<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+			</span>
+		</td>
+		<td><?= $cliente ?></td>
+		<td><?= $concepto ?></td>
+		<td><?= $software ?></td>
+		<td><?= $categoria ?></td>
+		<td>
+<?php
+	
+	if ($medioutilizado1 == 'on') {
+		echo '<span class="label label-default">Correo</span><br>';
+	}
+	else {
+	}
+
+	if ($medioutilizado2 == 'on') {
+		echo '<span class="label label-default">Teléfono</span><br>';
+	}
+	else {
+	}
+
+	if ($medioutilizado3 == 'on') {
+		echo '<span class="label label-default">Webex</span><br>';
+	}
+	else {
+	}
+
+	if ($medioutilizado4 == 'on') {
+		echo '<span class="label label-default">Team Viewer</span><br>';
+	}
+	else {
+	}
+
+	if ($medioutilizado5 == 'on') {
+		echo '<span class="label label-default">Hangout</span>';
+	}
+	else {
+	}	
+	
+?>
+		<td>
+			<?= $comentarios ?>
+			<br>
+			<small><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?= $asesor ?></small>
+		</td>
+		<td>
+			<small>
+			<span class="glyphicon glyphicon-calendar" aria-hidden="true" title="Fecha de captura"></span> <?= $fecharespuesta ?>
+			<br>
+			<span class="glyphicon glyphicon-time" aria-hidden="true" title="Desde:"></span> <?= $horainicio1 ?>
+			<br>
+			<span class="glyphicon glyphicon-time" aria-hidden="true" title="Hasta:"></span> <?= $horafin1 ?>
+			</small>
+		</td>
+	</tr>
+
+
+<?php
+	
+	$_SESSION['datetime20'] = $row3['fecharespuesta'];
+	
+	$i3++; 
+	
+	}
+	
+	$usuario_vendedor = '';
+	$asignacion_vendedor = '';
+
+?>
+
+</table>
+
+			<div>
+</div>
+</div>
+
+	</div>
+</div>

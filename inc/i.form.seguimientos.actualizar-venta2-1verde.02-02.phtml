@@ -1,0 +1,213 @@
+<table class="table table-striped" style="width:100%;">
+	<tr>
+		<th>
+			<a href="#f1" aria-controls="f1" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-primary">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> General
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-info">
+					<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span> Terminos de venta
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f3" aria-controls="f3" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Usuarios
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f4" aria-controls="f4" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Datos de Facturación
+				</button>
+			</a>
+		</th>
+		<th>
+			<a href="#f5" aria-controls="f5" role="tab" data-toggle="tab">
+				<button type="button" class="btn btn-default">
+					<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> Referencias
+				</button>
+			</a>
+		</th>
+	</tr>
+</table>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Precio total</th>
+				<td><input type="text" name="fd_precio_total" class="form-control" placeholder="" value="<?= $precio_total ?>"></td>
+			</tr>
+			<tr>
+				<th>Precio sin IVA</th>
+				<td><input type="text" name="fd_precio_sin_iva" class="form-control" placeholder="" value="<?= $precio_sin_iva ?>"></td>
+			</tr>
+			<tr>
+				<th>Forma de pago</th>
+				<td>
+					<select name="fd_forma_de_pago" class="form-control">
+						<option value=""></option>
+						<option value="Credito">Credito</option>
+						<option value="Contado">Contado</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Cantidad mensual</th>
+				<td><input type="text" name="fd_cantidad_mensual" class="form-control" placeholder="" value="<?= $cantidad_mensual ?>"></td>
+			</tr>
+			<tr>
+				<th>Banco</th>
+				<td>
+				
+				<div id="radio0">
+					<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_0" value="Bajio" onclick="javascript:this.form.fd_banco_.value=this.value;check1();"> Bajio
+					</a>
+					<br>
+					<a href="#f4" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_0" value="Bancomer / Santander" onclick="javascript:this.form.fd_banco_.value='Bancomer / Santander';check2();"> Bancomer / Santander
+					</a>
+				</div>
+
+				<div id="radio1">
+					<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_1" value="Bajio" onclick="javascript:this.form.fd_banco_.value=this.value;check1();" checked> Bajio
+					</a>
+					<br>
+					<a href="#f4" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_1" value="Bancomer / Santander" onclick="javascript:this.form.fd_banco_.value='Bancomer / Santander';check2();"> Bancomer / Santander
+					</a>
+				</div>
+
+				<div id="radio2">
+					<a href="#f2" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_2" value="Bajio" onclick="javascript:this.form.fd_banco_.value=this.value;check1();"> Bajio
+					</a>
+					<br>
+					<a href="#f4" aria-controls="f2" role="tab" data-toggle="tab">
+						<input type="radio" name="fd_banco_2" value="Bancomer / Santander" onclick="javascript:this.form.fd_banco_.value='Bancomer / Santander';check2();" checked> Bancomer / Santander
+					</a>
+				</div>
+
+				<input type="hidden" value="" name="fd_banco_">
+<style>
+	#radio0  {
+		display: block;
+	}
+	#radio1 {
+		display: none;
+	}
+	#radio2 {
+		display: none;
+	}
+
+</style>
+<script>
+
+function check1() {
+div = document.getElementById('radio0');
+div.style.display = 'none';
+div = document.getElementById('radio1');
+div.style.display = 'block';
+div = document.getElementById('radio2');
+div.style.display = 'none';
+}
+function check2() {
+div = document.getElementById('radio0');
+div.style.display = 'none';
+div = document.getElementById('radio1');
+div.style.display = 'none';
+div = document.getElementById('radio2');
+div.style.display = 'block';
+}
+
+
+</script>
+				<!--
+					<select name="fd_banco_" id="navigation" class="form-control">
+						<option value=""></option>
+						<option value="Bajio">Bajio</option>
+						<option value="Bancomer / Santander">Bancomer / Santander</option>
+					</select>
+				-->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-6">
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Factura avance</th>
+				<td>
+					<input type="text" name="fd_factura_avance" class="form-control" placeholder="" onblur="javascript:this.form.message.value=this.value;" value="<?= $factura_avance ?>">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Documentacion
+				</th>
+				<td>
+					<input type="text" name="fd_documentacion" class="form-control" placeholder="" value="<?= $documentacion ?>">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Mensualidades
+				</th>
+				<td>
+					<input type="text" name="v2" class="form-control" placeholder="" value="<?= $v2 ?>">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Días de pago
+				</th>
+				<td>
+					<select name="v3" class="form-control">
+						<option value=""></option>
+						<option value="1">1</option>
+						<option value="15">15</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<center>
+<!--
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+-->
+<script src="http://kumasoftware.com/ajax/ajax.script.js"></script>
+
+<div class="form-style" id="contact_form">
+<div id="contact_results"></div>
+<div id="contact_body">
+<input type="hidden" value="name" name="name" id="name" />
+<input type="hidden" value="<?= $reportedenuevaventausuario ?>@kumasoftware.com" name="email" />
+<input type="hidden" value="phone1" name="phone1"/>
+<input type="hidden" value="phone2" name="phone2" />
+<input type="hidden" value="Reporte de nueva venta" name="subject" />
+<input type="hidden" value="" name="message" id="message" />
+
+<input type="hidden" value="<?= $reportedenuevaventanombredelcliente ?>" name="reportedenuevaventanombredelcliente" id="reportedenuevaventanombredelcliente"/>
+<input type="hidden" value="<?= $reportedenuevaventaempresa ?>" name="reportedenuevaventaempresa" id="reportedenuevaventaempresa"/>
+<input type="hidden" value="" name="reportedenuevaventasoftware" id="reportedenuevaventasoftware"/>
+<input type="hidden" value="" name="reportedenuevaventanumerodeserie" id="reportedenuevaventanumerodeserie"/>
+<input type="hidden" value="" name="reportedenuevaventafacturaavance" id="reportedenuevaventafacturaavance"/>
+
+<button type="button" class="btn btn-warning" aria-label="Left Align" id="submit_btn">
+	<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Reporte de nueva venta.
+</button>
+			
+
+</div>
+</div>
+
+		</center>
+	</div>
+</div>
